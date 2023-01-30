@@ -1,5 +1,51 @@
-public class Main {
+import javax.swing.*;
+import java.awt.*;
+
+public class Main extends JFrame {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Main main = new Main();
+        main.setSize(500,500);
+        main.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        main.setVisible(true);
+    }
+
+    public Main() {
+        super("My Paint App");
+
+        JPanel southPanel = new JPanel();
+        southPanel.setBackground(Color.CYAN);
+        JButton b1 = new JButton("Undo");
+        JButton b2 = new JButton("Erase");
+        southPanel.add(b1);
+        southPanel.add(b2);
+
+        JPanel westPanel = new JPanel();
+        westPanel.setBackground(Color.PINK);
+        String [] colors = {"Black", "Red", "Blue", "Green", "Yellow"};
+        JComboBox list = new JComboBox(colors);
+        JRadioButton rectangle = new JRadioButton("Rectangle");
+        JRadioButton circle = new JRadioButton("Circle");
+        JRadioButton arc = new JRadioButton("Arc");
+        rectangle.setSelected(true);
+        ButtonGroup group = new ButtonGroup();
+        group.add(rectangle);
+        group.add(circle);
+        group.add(arc);
+        GridLayout grid = new GridLayout(7, 1);
+        westPanel.setLayout(grid);
+        westPanel.add(list);
+        westPanel.add(rectangle);
+        westPanel.add(circle);
+        westPanel.add(arc);
+
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setBackground(Color.GRAY);
+
+        BorderLayout layout = new BorderLayout();
+        setLayout(layout);
+        add(southPanel, BorderLayout.SOUTH);
+        add(westPanel, BorderLayout.WEST);
+        add(centerPanel, BorderLayout.CENTER);
     }
 }
