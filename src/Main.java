@@ -41,7 +41,7 @@ public class Main extends JFrame implements ActionListener {
         westPanel.add(arc);
 
 
-        JPanel centerPanel = new JPanel();
+        JPanel centerPanel = new DrawArea();
         centerPanel.setBackground(Color.GRAY);
 
         list.addActionListener(this);
