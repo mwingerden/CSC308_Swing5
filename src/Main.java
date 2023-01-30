@@ -1,7 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class Main extends JFrame {
+public class Main extends JFrame implements ActionListener {
     public static void main(String[] args) {
         Main main = new Main();
         main.setSize(500,500);
@@ -42,10 +44,26 @@ public class Main extends JFrame {
         JPanel centerPanel = new JPanel();
         centerPanel.setBackground(Color.GRAY);
 
+        list.addActionListener(this);
+        rectangle.addActionListener(this);
+        circle.addActionListener(this);
+        arc.addActionListener(this);
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+
         BorderLayout layout = new BorderLayout();
         setLayout(layout);
         add(southPanel, BorderLayout.SOUTH);
         add(westPanel, BorderLayout.WEST);
         add(centerPanel, BorderLayout.CENTER);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(e.getActionCommand());
+        if(e.getActionCommand().equals("comboBoxChanged")) {
+            JComboBox tmp = (JComboBox) e.getSource();
+            System.out.println(tmp.getSelectedItem());
+        }
     }
 }
