@@ -65,5 +65,8 @@ public class Main extends JFrame implements ActionListener {
             JComboBox tmp = (JComboBox) e.getSource();
             System.out.println(tmp.getSelectedItem());
         }
+        else if(e.getActionCommand().equalsIgnoreCase("rectangle")) {
+            System.out.println(e.getActionCommand());
+        }
     }
 }

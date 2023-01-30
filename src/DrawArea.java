@@ -3,9 +3,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 public class DrawArea extends JPanel implements MouseListener, MouseMotionListener {
     int x1, y1,x2, y2;
+    ArrayList<Shapes> shapes = new ArrayList<>();
 
     public DrawArea() {
         addMouseListener(this);
@@ -14,13 +16,7 @@ public class DrawArea extends JPanel implements MouseListener, MouseMotionListen
 
     public void paintComponent(Graphics g) {
         g.setColor(Color.RED);
-        g.fillRect(10, 10, 100, 100);
-    }
-
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
+        g.fillRect(x1, y1, x2-x1, y2-y1);
     }
 
     @Override
@@ -33,7 +29,13 @@ public class DrawArea extends JPanel implements MouseListener, MouseMotionListen
     public void mouseReleased(MouseEvent e) {
         x2 = e.getX();
         y2 = e.getY();
-        System.out.println(x1 + ", " + y1 + ", " + x2 + ", " + y2);
+//        System.out.println(x1 + ", " + y1 + ", " + x2 + ", " + y2);
+        repaint();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
     }
 
     @Override
