@@ -2,8 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class Main extends JFrame implements ActionListener {
+    DrawArea drawArea = new DrawArea();
+
     public static void main(String[] args) {
         Main main = new Main();
         main.setSize(500,500);
@@ -41,7 +44,7 @@ public class Main extends JFrame implements ActionListener {
         westPanel.add(arc);
 
 
-        JPanel centerPanel = new DrawArea();
+        JPanel centerPanel = drawArea;
         centerPanel.setBackground(Color.GRAY);
 
         list.addActionListener(this);
@@ -60,13 +63,21 @@ public class Main extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
+//        System.out.println(e.getActionCommand());
         if(e.getActionCommand().equals("comboBoxChanged")) {
             JComboBox tmp = (JComboBox) e.getSource();
-            System.out.println(tmp.getSelectedItem());
+            drawArea.setColor(Objects.requireNonNull(tmp.getSelectedItem()).toString().toUpperCase());
         }
-        else if(e.getActionCommand().equalsIgnoreCase("rectangle")) {
-            System.out.println(e.getActionCommand());
+        else if(e.getActionCommand().equalsIgnoreCase("rectangle")
+        || e.getActionCommand().equalsIgnoreCase("circle")
+        || e.getActionCommand().equalsIgnoreCase("arc")) {
+            drawArea.setShape(e.getActionCommand().toLowerCase());
+        }
+        else if(e.getActionCommand().equalsIgnoreCase("undo")) {
+            drawArea.undo();
+        }
+        else if(e.getActionCommand().equalsIgnoreCase("erase")) {
+            drawArea.erase();
         }
     }
 }
